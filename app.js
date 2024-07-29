@@ -3,6 +3,7 @@ const connectDB = require('./config/db');
 const bodyParser = require('body-parser');
 const logger = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler');
+const swagger = require('./swagger');
 require('dotenv').config();
 
 const app = express();
@@ -21,5 +22,8 @@ app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 
 app.use(errorHandler);
+
+swagger(app);
+
 
 module.exports = app;
